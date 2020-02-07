@@ -32,6 +32,16 @@
 import sys
 import commands                                         # Includes commands for above stated CLI commands
 import argparse
+import calendar
+from datetime import datetime
+
+class Budget():
+    def __init__(self, income_s, expense_s, month, year):
+        self.stable_incomes = income_s
+        self.stable_expenses = expense_s
+        self.current_month = month
+        self.year = year
+        self.months = [month for month in calendar.month_name if month]
 
 # Exception hook
 def exception_handler(exception_type, exception, traceback):
@@ -46,6 +56,7 @@ def main(args):
     # TODO Send args to command module function (acknowledge what command to use)
     # TODO Add more conditions and fix actions/placeholders
 
+
     if args.helpme:
         commands.show_commands()
     elif args.init:
@@ -57,20 +68,19 @@ def main(args):
         # Setup stable incomes dictionary {"CSN": 13000, "Tenant": 9300, "Salary": 4000} etc
         # Setup stable expenses dictionary {"Rent": 3500, "Phone Bill": 500, "Spotify": 49} etc
 
+        year = datetime.now().year
+        month = datetime.now().month
+
         _income_label = set([x.replace(',', '').title() for x in input("Set INCOME labels (salary, loan etc): ").split()])
         _expenses_label = set([x.replace(',', '').title() for x in input("Set EXPENSE labels ('rent, phone, spotify' etc): ").split()])
 
         incomes = { label : input(f"{label}: ") for label in _income_label }
-        expenses ={ label : input(f"{label}: ") for label in _expenses_label }
+        expenses = { label : input(f"{label}: ") for label in _expenses_label }
 
-        print("Income --------------------")
-        for k, v in incomes.items():
-            print(f" >>> {k}: {v}")
-        print("Expense -------------------")
-        for k, v in expenses.items():
-            print(f" >>> {k}: {v}")
+        budget = Budget(incomes, expenses, month, year)
+        commands.init(budget)
 
-    elif args.new:
+    elif args.new:  # Add that you can decide if it's stable or dynamic income/expense label
         print(f"Added label (placeholder): {args.new}")
     elif args.delete:
         print(f"Removed label (placeholder): {args.delete}")

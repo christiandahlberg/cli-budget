@@ -1,5 +1,6 @@
-
-
+# TODO: När man sätter in värden, kolla datetime.now().month och lägg till på den månaden
+from budget import Budget
+import json
 
 
 # BUDGET FUNCTIONS
@@ -16,8 +17,28 @@ def show_commands():
     print("  --sub <amount> <label>          Subtracts <amount> from <label> for current month/date/year")
     print("  --undo                          Undos the latest command made")
 
-def init():
-    pass
+def init(Budget):
+    months = Budget.months
+    current_budget = Budget
+
+    data = {
+        current_budget.year: {
+            month: {
+                "Fixed income": {
+                    label: value
+                    for label, value in current_budget.stable_incomes.items()
+                },
+                "Fixed expenses": {
+                    label: value
+                    for label, value in current_budget.stable_expenses.items()
+                }
+            }
+            for month in months
+        }
+    }
+
+    with open(f'budgets/budget_{Budget.year}.json', 'w') as fp:
+        json.dump(data, fp,  indent=4)
 
 def new(label):
     pass
@@ -33,6 +54,7 @@ def add(amount, label):
     """ Adds amount to specific label """
     # if db.find_label(label):
     #       add <amount> to label in json
+
     print("TBD execution of <def add()>")
 
 def sub(amount, label):
