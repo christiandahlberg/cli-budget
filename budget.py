@@ -19,6 +19,7 @@
 # ... $ python3 budget.py labels                        (Shos labels, ie Food, Snacks, Cinema, Taxis, Clothing)
 # ... $ python3 budget.py add <amount> <label>          (Adds <amount> into <label> for current month/date/year)
 # ... $ python3 budget.py sub <amount> <label>          (Subtracts <amount> from <label> for current month/date/year)
+# ... $ python3 budget.py undo                          (Undos the last used command)
 
 
 # ***** FUTURE DEVELOPMENTS *****
@@ -39,62 +40,74 @@ def exception_handler(exception_type, exception, traceback):
     else:
         sys.__excepthook__(exception_type, exception, traceback)
 
-# BUDGET FUNCTIONS
-
-# Adds amount to specific label
-def add(amount, label):
-    # if db.find_label(label):
-    #       add <amount> to label in json
-    print("TBD execution of <def add()>")
-
-
-
-
 def main(args):
     sys.excepthook = exception_handler  # Change?
 
     # TODO Send args to command module function (acknowledge what command to use)
-
     # TODO Add more conditions and fix actions/placeholders
+
     if args.helpme:
-        print("Showing all arguments for the Budget application: ")
-        print(" >>> --helpme                        (Shows all the argument options)")
-        print(" >>> --init                          (Initiates a new budget with following commands)")
-        print(" >>> --new <labeL>                   (Adds a new label to current budget)")
-        print(" >>> --delete <label>                (Removes label from current budget)")
-        print(" >>> --show                          (Shows budget as a pandas dataframe)")
-        print(" >>> --labels                        (Shos labels, ie Food, Snacks, Cinema, Taxis, Clothing)")
-        print(" >>> --add <amount> <label>          (Adds <amount> into <label> for current month/date/year)")
-        print(" >>> --sub <amount> <label>          (Subtracts <amount> from <label> for current month/date/year)")
+        commands.show_commands()
     elif args.init:
-        print("placeholder")
+
+        # ------------------------------- CONTINUE ON THIS ------------------------------------
+
+        # Create budget framework (for specific years?)
+        # Setup labels for dynamic income and expenses
+        # Setup stable incomes dictionary {"CSN": 13000, "Tenant": 9300, "Salary": 4000} etc
+        # Setup stable expenses dictionary {"Rent": 3500, "Phone Bill": 500, "Spotify": 49} etc
+
+        _income_label = set([x.replace(',', '').title() for x in input("Set INCOME labels (salary, loan etc): ").split()])
+        _expenses_label = set([x.replace(',', '').title() for x in input("Set EXPENSE labels ('rent, phone, spotify' etc): ").split()])
+
+        incomes = { label : input(f"{label}: ") for label in _income_label }
+        expenses ={ label : input(f"{label}: ") for label in _expenses_label }
+
+        print("Income --------------------")
+        for k, v in incomes.items():
+            print(f" >>> {k}: {v}")
+        print("Expense -------------------")
+        for k, v in expenses.items():
+            print(f" >>> {k}: {v}")
+
     elif args.new:
         print(f"Added label (placeholder): {args.new}")
     elif args.delete:
         print(f"Removed label (placeholder): {args.delete}")
+    elif args.show:
+        mode = args.show    # Check if mode is 'FULL', 'DAY', 'MONTH', 'YEAR' 
+        commands.show(mode)
     elif args.labels:
-        print("placeholder")
+        pass
     elif args.add:
         if len(args.add) != 2:
-            raise Exception('Please use correct syntax: --add <amount> <label>')
-        else:
-            amount = int(args.add[0])
-            label = args.add[1]
-            
-            # budget.add_amount(amount, label)       # TODO: Add error handling to know if it's amount or label
-            if add(amount, label):
-                print(f"Successfully added {amount} to {label}")
-                # TODO: Add 'current balance / blabla'
+            raise Exception('Please use correct syntax: --add <amount> <label>') 
+        amount = int(args.add[0])
+        label = args.add[1]
 
+        # budget.add(amount, label)       # TODO: Add error handling to know if it's amount or label
+        if commands.add(amount, label):
+            print(f"Successfully added {amount} to {label}")
+            # TODO: Add 'current balance / blabla'       
+    elif args.sub:
+        if len(args.sub) != 2:
+            raise Exception('Please use correct syntax: --sub <amount> <label>')  
+        amount = int(args.sub[0])
+        label = args.sub[1]
+
+        # budget.sub(amount, label)       # TODO: Add error handling to know if it's amount or label
+        if commands.sub(amount, label):
+            print(f"Successfully removed {amount} from {label}")
+            # TODO: Add 'current balance / blabla'  
+    elif args.undo:
+        pass
+    else:
+        pass # Will never reach this stage
             
 
-    # Add dates (year, month)
-    # Add labels
-    # Add stable incomes
-    # Add stable expenses
+
 
 if __name__ == "__main__":
-    # TODO Argparse
     # TODO Commands
 
     # TODO: add more arguments + fix arguments
@@ -106,12 +119,13 @@ if __name__ == "__main__":
     parser.add_argument("--show", help="Shows budget as a pandas dataframe", action="store_true") 
     parser.add_argument("--labels", help="Shows all labels in current budget", action="store_true") 
     parser.add_argument("--add", nargs="*", help="Adds <amount> into <label> for current month/date/year") 
+    parser.add_argument("--sub", nargs="*", help="Subtracts <amount> from <label> for current month/date/year")
+    parser.add_argument("--undo", help="Undos the latest command made", action="store_true") 
 
     # Check if arg has 'action="store true"' or not >>> *args/**kwargs
 
     args = parser.parse_args() 
 
-    # TODO BUG: check if min 1 arg for nargs arguments (argparse has no built in func)
+    # TODO BUG: check if min 1 arg for nargs="*" arguments (argparse has no built in func)
 
-    # Init
     main(args)
