@@ -100,18 +100,25 @@ def show(mode):
 
         # Clean data
         df_all[np.isnan(df_all)] = 0
-        df_all = df_all.rename(index={EXPENSE:INCOME}, level=1).fillna(0).groupby(level=[0,1]).sum(
-        #df_all.index = pd.CategoricalIndex(df_all.index, categories=ALL_MONTHS, ordered=True)
+        df_all = df_all.rename(index={EXPENSE:INCOME}, level=1).fillna(0).groupby(level=[0,1]).sum()
+        df_all = df_all.reset_index()
+        df_all = df_all.reindex([4, 3, 7, 0, 8, 6, 5, 1, 11, 10, 9, 2])
+        del df_all["level_1"]
+        df_all = df_all.reset_index(drop=True)
+        df_all.columns.values[0] = "month"
+        df_all.set_index('month')
 
         # Add column with summary
         pos = [data[k][INCOME] for k, v in data.items()]
         neg = [data[k][EXPENSE] for k, v in data.items()]
 
+        # Prepare current sum 
         pos_list = [sum([dictio[key] for key in dictio]) for dictio in pos]
         neg_list = [sum([dictio[key] for key in dictio]) for dictio in neg]
 
         _sum = [a_i - b_i for a_i, b_i in zip(pos_list, neg_list)]
 
+        # Add sum column to table
         df_all['Summary'] = _sum
 
         # Show data

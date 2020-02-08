@@ -38,7 +38,7 @@
 # IMPORTS
 import sys
 import os
-import commands                                         # Includes commands for above stated CLI commands
+import commands
 import argparse
 import calendar
 import itertools
