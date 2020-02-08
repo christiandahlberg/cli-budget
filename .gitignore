@@ -9,6 +9,7 @@ __pycache__/
 # Folders
 budget_venv/
 budgets/
+*.json
 
 # Distribution / packaging
 .Python
