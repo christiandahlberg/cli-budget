@@ -1,160 +1,158 @@
 {
-    "2020": {
-        "January": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+    "january": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
         },
-        "February": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+        "expense": {
+            "phone": 300,
+            "spotify": 49,
+            "rent": 3500
+        }
+    },
+    "february": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
         },
-        "March": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+        "expense": {
+            "phone": 300,
+            "spotify": 149,
+            "rent": 3500
+        }
+    },
+    "march": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
         },
-        "April": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+        "expense": {
+            "phone": 300,
+            "spotify": 49,
+            "rent": 3500
+        }
+    },
+    "april": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
         },
-        "May": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+        "expense": {
+            "phone": 300,
+            "spotify": 49,
+            "rent": 3500
+        }
+    },
+    "may": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
         },
-        "June": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+        "expense": {
+            "phone": 300,
+            "spotify": 49,
+            "rent": 3500
+        }
+    },
+    "june": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
         },
-        "July": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+        "expense": {
+            "phone": 300,
+            "spotify": 49,
+            "rent": 3500
+        }
+    },
+    "july": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
         },
-        "August": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+        "expense": {
+            "phone": 300,
+            "spotify": 49,
+            "rent": 3500
+        }
+    },
+    "august": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
         },
-        "September": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+        "expense": {
+            "phone": 300,
+            "spotify": 49,
+            "rent": 3500
+        }
+    },
+    "september": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
         },
-        "October": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+        "expense": {
+            "phone": 300,
+            "spotify": 49,
+            "rent": 3500
+        }
+    },
+    "october": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
         },
-        "November": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+        "expense": {
+            "phone": 300,
+            "spotify": 49,
+            "rent": 3500
+        }
+    },
+    "november": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
         },
-        "December": {
-            "Fixed income": {
-                "Csn": "10860",
-                "Tenant": "9300"
-            },
-            "Fixed expenses": {
-                "Hallands": "3500",
-                "Insurance": "120",
-                "Phone": "300",
-                "Ursvik": "8200",
-                "Spotify": "50"
-            }
+        "expense": {
+            "phone": 300,
+            "spotify": 49,
+            "rent": 3500
+        }
+    },
+    "december": {
+        "income": {
+            "loan": 1200,
+            "csn": 13000,
+            "salary": 2000,
+            "insurance": 0
+        },
+        "expense": {
+            "phone": 300,
+            "spotify": 49,
+            "rent": 3500
         }
     }
 }
