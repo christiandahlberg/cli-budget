@@ -116,7 +116,7 @@ def main(args):
 
 
     elif args.delete:
-        print(f"Removed label (placeholder): {args.delete}")
+        commands.delete(args.delete)
     elif args.show:
         mode = args.show    # Check if mode is 'FULL', 'DAY', 'MONTH', 'YEAR' 
         commands.show(mode)
@@ -158,7 +158,7 @@ if __name__ == "__main__":
     parser.add_argument("--init", help="Initiates a new budget", action="store_true")
     parser.add_argument("--new", nargs="*", help="Adds a new label to current budget")
     parser.add_argument("--delete", nargs="*", help="Removes a label from current budget")
-    parser.add_argument("--show", help="Shows budget as a pandas dataframe", action="store_true") 
+    parser.add_argument("--show", help="Shows budget as a pandas dataframe") 
     parser.add_argument("--labels", help="Shows all labels in current budget", action="store_true") 
     parser.add_argument("--add", nargs="*", help="Adds <amount> into <label> for current month/date/year") 
     parser.add_argument("--sub", nargs="*", help="Subtracts <amount> from <label> for current month/date/year")

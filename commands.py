@@ -3,8 +3,10 @@ from datetime import datetime
 import json
 import calendar
 import os
+import pandas as pd
+import numpy as np
 
-MODES = ['FULL', 'YEAR', 'MONTH']
+MODES = ['full', 'year', 'month']
 MONTH = calendar.month_name[datetime.now().month].lower()
 ALL_MONTHS = [month.lower() for month in calendar.month_name if month]
 YEAR = datetime.now().year
@@ -59,27 +61,68 @@ def new(label, category):
     else:
         for m in ALL_MONTHS:
             data[m][category][label] = 0
-        print(data[MONTH][category])
 
         # TODO: Dynamic budget "budget_{current_budget.year}.json"
         with open(f'budgets/budget_2020.json', 'w', encoding='utf-8') as fp:
             json.dump(data, fp, ensure_ascii=False, indent=4) 
 
 def delete(label):
-    pass
+    with open(f"budgets/budget_2020.json", "r") as file:
+        data = json.load(file)
+
+    category = find_category(label, data)
+
+    if find_label(label, data, category):
+        del data[MONTH][category][label]
+        print(f"Successfully deleted {label} from your Budget.")
+    else:
+        print(f"Sorry! Couldn't find a label named {label} in your budget.")
+
 
 def show(mode):
     # Check if mode is 'FULL', 'DAY', 'MONTH', 'YEAR'
     if mode not in MODES:
         print("Can only show data from _ by year, month or full.")
     else:
-        pass
+
+        ############ CONTINUE HERE ##############
+
+        # Fetch data
+        with open(f"budgets/budget_2020.json", "r") as file:
+            data = json.load(file)
+
+
+        # Convert data
+        df_all = pd.DataFrame.from_dict({(i,j): data[i][j] 
+                           for i in data.keys() 
+                           for j in data[i].keys()},
+                       orient='index')
+
+        # Clean data
+        df_all[np.isnan(df_all)] = 0
+        df_all = df_all.rename(index={EXPENSE:INCOME}, level=1).fillna(0).groupby(level=[0,1]).sum(
+        #df_all.index = pd.CategoricalIndex(df_all.index, categories=ALL_MONTHS, ordered=True)
+
+        # Add column with summary
+        pos = [data[k][INCOME] for k, v in data.items()]
+        neg = [data[k][EXPENSE] for k, v in data.items()]
+
+        pos_list = [sum([dictio[key] for key in dictio]) for dictio in pos]
+        neg_list = [sum([dictio[key] for key in dictio]) for dictio in neg]
+
+        _sum = [a_i - b_i for a_i, b_i in zip(pos_list, neg_list)]
+
+        df_all['Summary'] = _sum
+
+        # Show data
+        print(df_all)
 
 def add(amount, label):             
     """ Adds amount to specific label """
     with open(f"budgets/budget_2020.json", "r") as file:
         data = json.load(file)
 
+    # TODO BUG: What if same Label in both categories?
     category = find_category(label, data)
 
     if find_label(label, data, category):
