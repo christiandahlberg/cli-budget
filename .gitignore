@@ -6,8 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
-# Virtual Environments
+# Folders
 budget_venv/
+budgets/
 
 # Distribution / packaging
 .Python
